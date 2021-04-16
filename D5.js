@@ -219,10 +219,34 @@ const randMinMax = function(min,max){ return Math.floor(Math.random() * ((max+1)
 /* Ex.9
    Write a function called "howManyDays" which receives a date as a parameter and should return the number of days passed since that date.
 */
-
+;(function(){
+  printEx("9")
+  const howManyDays = (aDate) => 
+    Date.parse(aDate)  ? 
+    Math.floor ( ( (new Date).getTime() - aDate.getTime() ) / ( 1000 * 60 * 60 * 24 ) )
+    :"not a date"
+  //console.log( , howManyDays( new Date(2021,02,28) ) ) 
+  console.log(`test with new Date(2021,02,28) and today as: `+
+  `${new Date().toLocaleDateString("en-GB")} \n`+
+  `result: ${howManyDays( new Date(2021,02,28) )}\n`) 
+  console.log(`test with "aString" string \n`+
+  `result: ${howManyDays( "aString" )}\n`) 
+})()
 /* Ex.10
    Write a function called "isTodayMyBirthday" which should return true if today's your birthday, false otherwise.
 */
+;(function(){
+  printEx("10")
+  const isTodayMyBirthday = (str) => 
+  str==="and when it is?" ? 
+  new Date(2000,06 - 1, 28).toLocaleDateString("en-GB") : 
+  new Date().toLocaleDateString("en-GB") === new Date(2000,6 - 1,28).toLocaleDateString("en-GB")
+  console.log(`isTodayMyBirthday? : ${isTodayMyBirthday()}`)
+  console.log(`and when it is?    : ${isTodayMyBirthday("and when it is?")}`)
+})()
+
+
+// JS Arrays // Objs
 
 // JS Arrays // Objs
 // NOTE: movies array is defined at the end of this file!
@@ -230,7 +254,6 @@ const randMinMax = function(min,max){ return Math.floor(Math.random() * ((max+1)
 /* Ex.11
    Write a function called "deleteProp" which receives an object and a string as parameters, and returns the given object after deleting its property named as the given string.
 */
-
 /* Ex.12 
     Write a function called "olderMovie" which finds the oldest movie in the array provided at the end of this file.
 */
