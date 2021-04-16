@@ -116,10 +116,11 @@ const randMinMax = function(min,max){ return Math.floor(Math.random() * ((max+1)
 /* Ex.1
     Write a function called "dice"; it should randomize an integer number between 1 and 6.
 */
-;(function(){
+;let dice = (function(){
   printEx("1")
   const dice = () => randMinMax(1,6)
   for( let i in [...Array(10).keys()] ) console.log(`*throws dice* result1: ${dice()} result2: ${dice()} result3: ${dice()}`)
+  return dice
 })()
 
 /* Ex.2 
@@ -159,13 +160,38 @@ const randMinMax = function(min,max){ return Math.floor(Math.random() * ((max+1)
    Ex.: onlyLetters("I have 4 dogs")  => returns "I have  dogs"
 */
 
+;(function(){
+  printEx("5")
+  const onlyLetters = (str) => str.replace(/\d/g," " )
+  console.log(`test onlyLetters with "I lead 300 spartans": ${onlyLetters("I lead 300 spartans")}`)
+})()
+
 /* Ex.6 
    Write a function called "isThisAnEmail" which receives a string as a parameter and returns true if the string is a valid email address.
 */
 
+;(function(){
+  printEx("6")
+  let emailRegex = 
+  /(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])/
+  // source : https://emailregex.com/
+  const isThisAnEmail = (str) => str.match( emailRegex ) !== null  
+  console.log(`test isThisAnEmail with "notAnEmail#domainnet"          : ${isThisAnEmail("notAnEmail#domainnet")}`)
+  console.log(`test isThisAnEmail with "stillnotAnEmail#domain.net"    : ${isThisAnEmail("stillnotAnEmail#domain.net")}`)
+  console.log(`test isThisAnEmail with "validname@validdom.yes"        : ${isThisAnEmail("validname@validdom.noooooo")}`)
+  console.log(`test isThisAnEmail with "maksym.sharin.work@gmail.com"  : ${isThisAnEmail("maksym.sharin.work@gmail.com")}`)
+})()
+
 /* Ex.7
    Write a function called "whatDayIsIt" that should return the current day of the week.
 */
+;(function(){
+  printEx("7")
+  const whatDayIsIt = () => new Date().toLocaleDateString("en-GB")
+  console.log(">whatDayIsIt???")
+  console.log(`>${whatDayIsIt()} `)
+  console.log(">THX")
+})()
 
 /* Ex.8
     Write a function called "rollTheDices" which receives a number as a parameter.
@@ -177,6 +203,18 @@ const randMinMax = function(min,max){ return Math.floor(Math.random() * ((max+1)
         values: [3, 3, 4]
     }
 */
+;(function(dice){
+  printEx("8")
+  let obj = {sum: 0 , values: [] }
+  const rollTheDices = (n) =>  { 
+  [...Array(n) ].forEach( (el,i,a) => {
+    val = dice() 
+    obj.values.push(val)
+    obj.sum += val   
+    } ); return obj }
+  console.log(`test of rollTheDices( randMinMax(0,12) ) returned object:`+
+  ` ${JSON.stringify(rollTheDices( randMinMax(0,12)))}`)
+})(dice)
 
 /* Ex.9
    Write a function called "howManyDays" which receives a date as a parameter and should return the number of days passed since that date.
