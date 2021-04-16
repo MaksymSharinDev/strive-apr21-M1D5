@@ -501,6 +501,20 @@ const movies = [
   ***
 */
 
+;(function(){
+  printEx("21")
+  const halfTree = (n) => {
+    let strAcc = ""
+    for( let i in [...Array(n).keys()] ) {
+      strAcc += "*"
+      console.log( strAcc  )
+    }
+  }
+  console.log(`test 3: \n`);
+  halfTree(3)
+  console.log(`test 5: \n`);
+  halfTree(5)
+})()
 /* Ex.22 
   Create a function called "tree" which receives a number as a parameter and builds an "*" tree with the given height.
   Example: 
