@@ -22,7 +22,7 @@
 
 //Utility functions:
 const printEx = (id) => console.log(`\n\nExercise ${id}: \n`)
-const randMinMax = function(min,max){ return Math.floor(Math.random() * (max - min)) + min; }
+const randMinMax = function(min,max){ return Math.floor(Math.random() * ((max+1) - min)) + min; }
 
 
 //JS Basics
@@ -119,21 +119,40 @@ const randMinMax = function(min,max){ return Math.floor(Math.random() * (max - m
 ;(function(){
   printEx("1")
   const dice = () => randMinMax(1,6)
-  for( let i in [...Array(5).keys()] ) console.log(`*throws dice* result: ${dice()}`)
+  for( let i in [...Array(10).keys()] ) console.log(`*throws dice* result1: ${dice()} result2: ${dice()} result3: ${dice()}`)
 })()
 
 /* Ex.2 
     Write a function called "whoIsBigger" which receives 2 numbers as parameters and returns the biggest one.
 */
-
+;(function(){
+  printEx("2")
+  let [N1,N2] = [ 
+    { gen : function () { this.value=randMinMax(0,100) ; return this.value } , value : null} , 
+    { gen : function () { this.value=randMinMax(0,100) ; return this.value } , value : null} ] 
+  const whoIsBigger = (n1,n2) => n1>n2 ? n1 : n2
+  for( let i in [...Array(5).keys()] )
+  console.log(`test of whoIsBigger with ${N1.gen()} and ${N2.gen()} ---> ${whoIsBigger(N1.value,N2.value)}`)
+})()
 /* Ex.3
     Write a function called "splitMe" which receives a string as a parameter and returns an array with every word in that string.
     Ex. splitMe("I love coding") => returns ["I", "Love", "Coding"]
 */
+;(function(){
+  printEx("3")
+  const splitMe = (str) => str.split(" ")
+  console.log(`testing "i am a string" : ${splitMe("i am a string")}`)
+})()
 
 /* Ex.4
     Write a function called "deleteOne" which receives a string and a boolean as parameters. If the boolean value is true it should return the string without the first letter, otherwise it should remove the last one from it.
 */
+;(function(){
+  printEx("4")
+  const deleteOne = (str,flag) => flag ? str.slice(1 , str.length ) : str.slice( 0, str.length -1 )
+  console.log(`deleteOne() test with "beat the rage" and true : ${deleteOne("beat the rage",true)}`)
+  console.log(`deleteOne() test with "beat the rage" and false: ${deleteOne("beat the rage",false)}`)
+})()
 
 /* Ex.5
    Write a function called "onlyLetters" which receives a string as a parameter and returns it removing all the digits.
