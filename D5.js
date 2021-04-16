@@ -467,11 +467,28 @@ const movies = [
 */
 ;(function(moviesArray){
   printEx("19")
-  
+  const searchAndDivide = (str) =>  { 
+    return {
+      match:  
+      moviesArray.filter( (obj) => !!obj.Title.match(str) ), 
+      unmatch:
+      moviesArray.filter( (obj) => !obj.Title.match(str) ), 
+    }
+  } //obj
+    console.log( `result for "Avengers" ${searchAndDivide("Avengers")}` )
 })(movies)
 /* Ex.20
    Write a function called "removeIndex" which receives a number as a parameter and returns the movies array without the element in the given position.
 */
+;(function(moviesArray){
+  printEx("20")
+  const removeIndex = (index) => { moviesArray.splice(index, 1); return moviesArray } 
+  console.log( `delete of `+
+  "The Lord of the Rings: The Fellowship of the Ring"+
+  `" ${JSON.stringify( removeIndex(0) ).replace(/,/g,",\n") }` )
+  
+})(movies)
+
 
 // [EXTRAS] JS Advanced
 
